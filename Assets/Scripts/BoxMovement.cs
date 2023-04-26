@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class BoxMovement : MonoBehaviour
 {
-   
-    [SerializeField]
-    float rayLength = 1f;
-    [SerializeField]
-    float rayOffsetX = 0.5f;
-    [SerializeField]
-    float rayOffsetY = 0.5f;
-    [SerializeField]
-    float rayOffsetZ = 0.5f;
+
     private PlayerMovement player;
 
     private void Start()
@@ -22,6 +14,13 @@ public class BoxMovement : MonoBehaviour
     private void OnMouseDown()
     {
         PushBox();
+        player.StopColors();
+    }
+
+    private void Update()
+    {
+        if(!player.isColored && GetComponent<MeshRenderer>().material.color == Color.blue)
+            GetComponent<MeshRenderer>().material.color = new Color(0.254f, 0.169f, 0.063f, 1f);
     }
 
 
@@ -34,29 +33,25 @@ public class BoxMovement : MonoBehaviour
             {
                 transform.Translate(directions[i]);
                 player.transform.Translate(directions[i]);
+                player.isColored = false;
+                if (player.isColored)
+                    GetComponent<MeshRenderer>().material.color = Color.blue;
+                else
+                    GetComponent<MeshRenderer>().material.color = new Color(0.254f, 0.169f, 0.063f, 1f);
             }
         }
-        GetComponent<MeshRenderer>().material.color = Color.cyan;
     }
+
+    [SerializeField]
+    float rayLength = 1f;
+    [SerializeField]
+    float rayOffsetX = 0.5f;
+    [SerializeField]
+    float rayOffsetY = 0.5f;
+    [SerializeField]
+    float rayOffsetZ = 0.5f;
     
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.DrawLine(transform.position + Vector3.up * rayOffsetY + Vector3.right * rayOffsetX, transform.position + Vector3.up * rayOffsetY + Vector3.right * rayOffsetX + Vector3.forward * rayLength, Color.green, Time.deltaTime);
-        Debug.DrawLine(transform.position + Vector3.up * rayOffsetY - Vector3.right * rayOffsetX, transform.position + Vector3.up * rayOffsetY - Vector3.right * rayOffsetX + Vector3.forward * rayLength, Color.green, Time.deltaTime);
-
-        Debug.DrawLine(transform.position + Vector3.up * rayOffsetY + Vector3.right * rayOffsetX, transform.position + Vector3.up * rayOffsetY + Vector3.right * rayOffsetX + Vector3.back * rayLength, Color.green, Time.deltaTime);
-        Debug.DrawLine(transform.position + Vector3.up * rayOffsetY - Vector3.right * rayOffsetX, transform.position + Vector3.up * rayOffsetY - Vector3.right * rayOffsetX + Vector3.back * rayLength, Color.green, Time.deltaTime);
-
-        Debug.DrawLine(transform.position + Vector3.up * rayOffsetY + Vector3.forward * rayOffsetZ, transform.position + Vector3.up * rayOffsetY + Vector3.forward * rayOffsetZ + Vector3.left * rayLength, Color.green, Time.deltaTime);
-        Debug.DrawLine(transform.position + Vector3.up * rayOffsetY - Vector3.forward * rayOffsetZ, transform.position + Vector3.up * rayOffsetY - Vector3.forward * rayOffsetZ + Vector3.left * rayLength, Color.green, Time.deltaTime);
-
-        Debug.DrawLine(transform.position + Vector3.up * rayOffsetY + Vector3.forward * rayOffsetZ, transform.position + Vector3.up * rayOffsetY + Vector3.forward * rayOffsetZ + Vector3.right * rayLength, Color.green, Time.deltaTime);
-        Debug.DrawLine(transform.position + Vector3.up * rayOffsetY - Vector3.forward * rayOffsetZ, transform.position + Vector3.up * rayOffsetY - Vector3.forward * rayOffsetZ + Vector3.right * rayLength, Color.green, Time.deltaTime);
-
-    }
     public bool CanMove(Vector3 direction)
     {
         RaycastHit hit;

@@ -62,26 +62,35 @@ public class GameManager : MonoBehaviour
     }
     void GetBlock(int block, int x, int z)
     {
+        
         switch (block)
         {
             case 4:
-                Instantiate(wall, new Vector3(x, 1f, z), wall.transform.rotation);
-                Instantiate(floor, new Vector3(x, 0f, z), floor.transform.rotation);
+                var wallChild = Instantiate(wall, new Vector3(x, 1f, z), wall.transform.rotation);
+                wallChild.transform.parent = gameObject.transform;
+                var floorChild = Instantiate(floor, new Vector3(x, 0f, z), floor.transform.rotation);
+                floorChild.transform.parent = gameObject.transform;
                 break;
             case 2:
-                Instantiate(box, new Vector3(x, 1f, z), box.transform.rotation);
-                Instantiate(floor, new Vector3(x, 0f, z), floor.transform.rotation);
+                var boxChild = Instantiate(box, new Vector3(x, 1f, z), box.transform.rotation);
+                boxChild.transform.parent = gameObject.transform;
+                floorChild = Instantiate(floor, new Vector3(x, 0f, z), floor.transform.rotation);
+                floorChild.transform.parent = gameObject.transform;
                 break;
             case 0:
-                Instantiate(floor, new Vector3(x, 0f, z), floor.transform.rotation);
+                floorChild = Instantiate(floor, new Vector3(x, 0f, z), floor.transform.rotation);
+                floorChild.transform.parent = gameObject.transform;
                 break;
             case 1:
-                Instantiate(ArrivalTrigger, new Vector3(x, 1f, z), floor.transform.rotation);
-                Instantiate(ArrivalPoint, new Vector3(x, 0f, z), floor.transform.rotation);
+                var ArrivalTriggerChild =  Instantiate(ArrivalTrigger, new Vector3(x, 1f, z), floor.transform.rotation);
+                ArrivalTriggerChild.transform.parent = gameObject.transform;
+                var ArrivalPointChild = Instantiate(ArrivalPoint, new Vector3(x, 0f, z), floor.transform.rotation);
+                ArrivalPointChild.transform.parent = gameObject.transform;
                 break;
             case 3:
                 Instantiate(player, new Vector3(x, 1f, z), wall.transform.rotation);
-                Instantiate(floor, new Vector3(x, 0f, z), floor.transform.rotation);
+                floorChild = Instantiate(floor, new Vector3(x, 0f, z), floor.transform.rotation);
+                floorChild.transform.parent = gameObject.transform;
                 break;
         }
     }

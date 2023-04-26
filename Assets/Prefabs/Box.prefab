@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5255294298961933549}
   - component: {fileID: 3164037648744016485}
-  - component: {fileID: 8176814550440216284}
   - component: {fileID: 4423542788745845553}
   - component: {fileID: 9031235175927714410}
+  - component: {fileID: 7693316929151047471}
   m_Layer: 0
   m_Name: Box
   m_TagString: Box
@@ -43,7 +43,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6469614106839796641}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8176814550440216284
+--- !u!65 &4423542788745845553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469614106839796641}
+  m_Material: {fileID: 13400000, guid: 09b32e2d0a1d6db42b016910471f9537, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9031235175927714410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6469614106839796641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a05ffd67ebd0c64b98e2d7ceab16f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayLength: 1
+  rayOffsetX: 0.4
+  rayOffsetY: 0.4
+  rayOffsetZ: 0.4
+--- !u!23 &7693316929151047471
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,32 +114,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4423542788745845553
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6469614106839796641}
-  m_Material: {fileID: 13400000, guid: 09b32e2d0a1d6db42b016910471f9537, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9031235175927714410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6469614106839796641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a05ffd67ebd0c64b98e2d7ceab16f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayLength: 1
-  rayOffsetX: 0.4
-  rayOffsetY: 0.4
-  rayOffsetZ: 0.4

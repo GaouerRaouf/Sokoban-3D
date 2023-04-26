@@ -6,22 +6,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    float moveSpeed = 0.5f;
-    [SerializeField]
-    float rayLength = 1.4f;
-    [SerializeField]
-    float rayOffsetX = 0.5f;
-    [SerializeField]
-    float rayOffsetY = 0.5f;
-    [SerializeField]
-    float rayOffsetZ = 0.5f;
-
-
-    [SerializeField] GameObject coloredObjects;
+   
     [SerializeField] GameObject bottom;
 
-
+    public bool isColored = false;
 
    
     Vector3 targetPosition;
@@ -32,38 +20,23 @@ public class PlayerMovement : MonoBehaviour
         targetPosition =  destination - transform.position + Vector3.up;
         transform.Translate(targetPosition);
         startPosition = transform.position;   
-    }
-
-    bool CanMove(Vector3 direction)
-    {
-        RaycastHit hit;
-
-        if ((Vector3.Equals(Vector3.forward, direction) || Vector3.Equals(Vector3.back, direction)))
-        {
-            if ((Physics.Raycast(transform.position + Vector3.up * rayOffsetY + Vector3.right * rayOffsetX, direction, out hit, rayLength)) && ((hit.transform.gameObject.tag == "Wall") || (hit.transform.gameObject.tag == "Box" && !hit.transform.gameObject.GetComponent<BoxMovement>().CanMove(direction)))) return false;         
-        }
-        else if (Vector3.Equals(Vector3.left, direction) || Vector3.Equals(Vector3.right, direction))
-        {
-            if ((Physics.Raycast(transform.position + Vector3.up * rayOffsetY + Vector3.forward * rayOffsetZ, direction, out hit, rayLength)) && ((hit.transform.gameObject.tag == "Wall") || (hit.transform.gameObject.tag == "Box" && !hit.transform.gameObject.GetComponent<BoxMovement>().CanMove(direction)))) return false;
-        }
-        
-        
-        return true;
-    }
-    
+    }    
     
 
     private void OnMouseDown()
     {
-        bottom.SetActive(true);
-        move = true;
+        isColored = !isColored;
+        bottom.SetActive(isColored);
         DetectBoxObjects();
     }
-
+    public void StopColors()
+    {
+            isColored = false;
+            bottom.SetActive(false);
+    }
     
     public float detectDistance = 0.1f; 
     public string boxTag = "Box"; 
-    public bool move = false;
 
 
     public Vector3[] DetectBoxObjects()
