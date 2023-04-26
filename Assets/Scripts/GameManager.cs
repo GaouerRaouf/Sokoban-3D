@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartGame();
         Instance = this;
     }
 
@@ -109,12 +110,12 @@ public class GameManager : MonoBehaviour
             if (level == Levels.levels.Count-1)
             {
                 DestroyLevel(Levels.levels[level]);
-                menu.gameObject.SetActive(true);
+           //     menu.gameObject.SetActive(true);
             }
             else
             {
                 DestroyLevel(Levels.levels[level]);
-                youWin.gameObject.SetActive(true);
+              //  youWin.gameObject.SetActive(true);
             }
             return true;
         }
@@ -123,7 +124,7 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         DestroyLevel(Levels.levels[level]);
-        youWin.SetActive(false);
+     //   youWin.SetActive(false);
         CreateLevel(Levels.levels[level]);
     }
     public void NextLevel()
@@ -135,7 +136,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        menu.gameObject.SetActive(false);
+      //  menu.gameObject.SetActive(false);
         DestroyLevel(Levels.levels[level]);
         level = 0;
         CreateLevel(Levels.levels[level]);
